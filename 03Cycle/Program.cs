@@ -60,7 +60,7 @@ do
     }
     Console.WriteLine("The password was entered incorrectly");
     Console.ReadLine();
-    ++result;
 
-} while (result < 6);
+} while (++result < 6);
+
 
