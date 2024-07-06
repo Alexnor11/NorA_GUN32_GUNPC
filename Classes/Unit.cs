@@ -3,9 +3,9 @@
     class Unit(string name)
     {
         public string Name { get; } = name;
-        private float health; 
-        public float Health => health;
-        private const float _Damage = 5f;        
+        private float _health; 
+        public float Health => _health;
+        private const float BASE_DAMAGE = 5f;        
 
         // Конструкторы
         public Unit() : this("Unknown Unit") { }
@@ -15,7 +15,7 @@
       
         public bool SetDamage(float value)
         {          
-            health -= value * (1f - Armor);           
+            _health -= value * (1f - Armor);           
             return Health <= 0f;
         }
 
@@ -45,9 +45,9 @@
             get
             {               
                 if (EquippedWeapon != null)
-                    return EquippedWeapon.GetDamage() + _Damage; 
+                    return EquippedWeapon.GetDamage() + BASE_DAMAGE; 
                 else
-                    return _Damage; 
+                    return BASE_DAMAGE; 
             }
         }
        
@@ -68,7 +68,7 @@
        
         public void SetHealth(float initialHealth)
         {
-            health = initialHealth;
+            _health = initialHealth;
         }
 
         // Предметы персонажа

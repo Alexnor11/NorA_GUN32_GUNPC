@@ -5,27 +5,47 @@
     {
         private static void Main(string[] args)
         {
-            Console.WriteLine("Подготовка к бою: ");
-            Console.Write("Введите имя бойца: ");
-            string name = Console.ReadLine();
+            Console.WriteLine("Подготовка к бою:");
 
-            Console.Write("Введите начальное здоровье бойца (10-100): ");
-            float health = float.Parse(Console.ReadLine());
+            Console.WriteLine("Введите имя бойца:");
+            var name = Console.ReadLine();
 
-            Console.Write("Введите значение брони шлема от 0 до 1: ");
-            float helmArmor = float.Parse(Console.ReadLine());
+            Console.WriteLine("Введите начальное здоровье бойца (10-100):");
+            if (!float.TryParse(Console.ReadLine(), out var health))
+            {
+                Console.WriteLine("Значение равно нулю.");
+            }
 
-            Console.Write("Введите значение брони кирасы от 0 до 1: ");
-            float shellArmor = float.Parse(Console.ReadLine());
+            Console.WriteLine("Введите значение брони шлема от 0, до 1:");
+            if (!float.TryParse(Console.ReadLine(), out var helmArmor))
+            {
+                Console.WriteLine("Значение равно нулю.");
+            }
 
-            Console.Write("Введите значение брони сапог от 0 до 1: ");
-            float bootsArmor = float.Parse(Console.ReadLine());
+            Console.WriteLine("Введите значение брони кирасы от 0, до 1:");
+            if (!float.TryParse(Console.ReadLine(), out var shellArmor))
+            {
+                Console.WriteLine("Значение равно нулю.");
+            }
 
-            Console.Write("Укажите минимальный урон оружия (0-20): ");
-            float minWeaponDamage = float.Parse(Console.ReadLine());
+            Console.WriteLine("Введите значение брони сапог от 0, до 1:");
+            if (!float.TryParse(Console.ReadLine(), out var bootsArmor))
+            {
+                Console.WriteLine("Значение равно нулю.");
+            }
 
-            Console.Write("Укажите максимальный урон оружия (20-40): ");
-            float maxWeaponDamage = float.Parse(Console.ReadLine());
+            Console.WriteLine("Укажите минимальный урон оружия (1-10):");
+            if (!float.TryParse(Console.ReadLine(), out var minWeaponDamage))
+            {
+                Console.WriteLine("Значение равно нулю.");
+            }
+
+            Console.WriteLine("Укажите максимальный урон оружия (10 и более):");
+            if (!float.TryParse(Console.ReadLine(), out var maxWeaponDamage))
+            {
+                Console.WriteLine("Значение равно нулю.");
+            }
+
 
             Unit player = new Unit(name);
             player.SetHealth(health);
