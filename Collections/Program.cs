@@ -104,20 +104,15 @@
         {
             public void TaskLoop()
             {
-                var exit = "-exit";
-                Console.WriteLine("Чтобы остановить программу, введите " + exit);
-
+                
                 LinkedList<string> people = new LinkedList<string>();
                 //Console.WriteLine("Введите элемент ");
                 for (int i = 0; i < 4; i++)
                 {
                     Console.WriteLine("Введите элемент ");
 
-                    var input = Console.ReadLine();
-                    if (input == exit)
-                    {
-                        break;
-                    }
+                    var input = Console.ReadLine();                    
+                    
                     people.AddLast(input);
                 }
                 Console.WriteLine(new String('*', 15));
