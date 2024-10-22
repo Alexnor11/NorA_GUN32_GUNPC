@@ -1,0 +1,185 @@
+﻿namespace Collections
+{
+    internal class Program
+    {
+        private class ListTask
+        {
+            private readonly List<string> _listOfStrings = new List<string>()
+            {
+                 "Tom", "Bob", "Sam"
+            };
+            public void TaskLoop()
+            {
+                var exit = "-exit";
+                Console.WriteLine("Чтобы остановить программу, введите " + exit);
+
+                while (true)
+                {
+                    Console.WriteLine("Введите имя: ");
+                    var input1 = Console.ReadLine();
+
+                    if (input1 == exit) { break; }
+
+                    _listOfStrings.Add(input1);
+                    Console.WriteLine(new string('*', 20));
+
+                    foreach (var list in _listOfStrings)
+                    {
+                        Console.WriteLine(list);
+                    }
+
+                    Console.WriteLine("Введите еще одно имя: ");
+
+                    var input2 = Console.ReadLine();
+                    if (input1 == exit) { break; }
+
+                    _listOfStrings.Insert(_listOfStrings.Count / 2, input2);
+                    Console.WriteLine(new string('*', 20));
+
+                    foreach (var list in _listOfStrings)
+                    {
+                        Console.WriteLine(list);
+                    }
+                }
+            }
+        }
+
+        private class DictionaryTask
+        {
+            private readonly Dictionary<string, int> _OfStudents = new Dictionary<string, int>();
+
+
+            public void TaskLoop()
+
+            {
+                var exit = "-exit";
+                Console.WriteLine("Чтобы остановить программу, введите " + exit);
+
+                while (true)
+                {
+                    Console.WriteLine("Введите имя студента: ");
+                    var studentName = Console.ReadLine();
+                    if (studentName == exit) { break; }
+
+                    Console.WriteLine("Введите оценку студента не менее 2 и не более 5: ");
+                    var number = Console.ReadLine();
+                    if (number == exit) { break; }
+
+                    if (int.TryParse(number, out int studentNumber) && studentNumber > 1 && studentNumber < 6)
+                    {
+                        _OfStudents.Add(studentName, studentNumber);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Вы ввели не правильную оцеку");
+                    }
+
+                    foreach (var dict in _OfStudents)
+                    {
+                        Console.WriteLine(dict.Key);
+                    }
+                    Console.WriteLine("Введите имя студента из списка");
+                    var inputName = Console.ReadLine();
+
+                    if (inputName == exit)
+                    {
+                        break;
+                    }
+                    if (_OfStudents.TryGetValue(inputName, out int mark))
+                    {
+                        Console.WriteLine($"Оценка: {mark}");
+                        Console.ReadLine();
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Студента с таким именем нет");
+                    }
+                }
+
+            }
+        }
+
+        private class LinkedListTask
+        {
+            public void TaskLoop()
+            {
+                var exit = "-exit";
+                Console.WriteLine("Чтобы остановить программу, введите " + exit);
+
+                var nodeList = new List<string>();
+
+                for (int i = 0; i < 4; i++)
+                {
+                    Console.WriteLine("Введите элемент ");
+                    var input = Console.ReadLine();
+                    if (input == exit)
+                    {
+                        break;
+                    }
+                    nodeList.Add(input);
+                }
+
+                var linkedList = new LinkedList<string>(nodeList);
+
+                Console.WriteLine(new String('*', 15));
+                foreach (var node in linkedList)
+                {
+                    Console.WriteLine(node);
+                }
+
+                var node1 = linkedList.Last;
+
+                Console.WriteLine(new String('*', 15));
+                for (int i = linkedList.Count; i > 0; i--)
+                {
+                    Console.WriteLine(node1.Value);
+                    node1 = node1.Previous;
+                }
+                Console.ReadLine();
+            }
+
+            static void Main(string[] args)
+            {
+                Console.WriteLine("Выберете Номер задания 1, 2, 3");
+                int.TryParse(Console.ReadLine(), out int task);
+
+                switch (task)
+                {
+                    case 1:
+                        CheckTaskFirst();
+                        break;
+                    case 2:
+                        CheckTaskSecond();
+                        break;
+                    case 3:
+                        CheckTaskThird();
+                        break;
+                    default:
+                        Console.WriteLine("Неверный ввод данных");
+                        break;
+
+                }
+            }
+
+        private static void CheckTaskFirst()
+        {
+            var listTask = new ListTask();
+            listTask.TaskLoop();
+        }
+
+        private static void CheckTaskSecond()
+        {
+            var dictionaryTask = new DictionaryTask();
+            dictionaryTask.TaskLoop();
+        }
+                
+        }
+        private static void CheckTaskThird()
+        {
+            var linkedListTask = new LinkedListTask();
+            linkedListTask.TaskLoop();
+        }
+
+    }
+}
