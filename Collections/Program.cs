@@ -107,36 +107,38 @@
                 var exit = "-exit";
                 Console.WriteLine("Чтобы остановить программу, введите " + exit);
 
-                var nodeList = new List<string>();
-
+                LinkedList<string> people = new LinkedList<string>();
+                //Console.WriteLine("Введите элемент ");
                 for (int i = 0; i < 4; i++)
                 {
                     Console.WriteLine("Введите элемент ");
+
                     var input = Console.ReadLine();
                     if (input == exit)
                     {
                         break;
                     }
-                    nodeList.Add(input);
+                    people.AddLast(input);
                 }
-
-                var linkedList = new LinkedList<string>(nodeList);
+                Console.WriteLine(new String('*', 15));
+                // от начала до конца списка
+                var currentNode = people.First;
+                while (currentNode != null)
+                {
+                    Console.WriteLine(currentNode.Value);
+                    currentNode = currentNode.Next;
+                }
 
                 Console.WriteLine(new String('*', 15));
-                foreach (var node in linkedList)
+
+                // с конца до начала списка
+                currentNode = people.Last;
+                while (currentNode != null)
                 {
-                    Console.WriteLine(node);
+                    Console.WriteLine(currentNode.Value);
+                    currentNode = currentNode.Previous;
                 }
 
-                var node1 = linkedList.Last;
-
-                Console.WriteLine(new String('*', 15));
-                for (int i = linkedList.Count; i > 0; i--)
-                {
-                    Console.WriteLine(node1.Value);
-                    node1 = node1.Previous;
-                }
-                Console.ReadLine();
             }
 
             static void Main(string[] args)
