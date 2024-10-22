@@ -46,7 +46,7 @@
 
         private class DictionaryTask
         {
-            private readonly Dictionary<string, int> _OfStudents = new Dictionary<string, int>();
+            private readonly Dictionary<string, int> _studetsMap = new Dictionary<string, int>();
 
 
             public void TaskLoop()
@@ -67,14 +67,14 @@
 
                     if (int.TryParse(number, out int studentNumber) && studentNumber > 1 && studentNumber < 6)
                     {
-                        _OfStudents.Add(studentName, studentNumber);
+                        _studetsMap.Add(studentName, studentNumber);
                     }
                     else
                     {
                         Console.WriteLine("Вы ввели не правильную оцеку");
                     }
 
-                    foreach (var dict in _OfStudents)
+                    foreach (var dict in _studetsMap)
                     {
                         Console.WriteLine(dict.Key);
                     }
@@ -85,7 +85,7 @@
                     {
                         break;
                     }
-                    if (_OfStudents.TryGetValue(inputName, out int mark))
+                    if (_studetsMap.TryGetValue(inputName, out int mark))
                     {
                         Console.WriteLine($"Оценка: {mark}");
                         Console.ReadLine();
