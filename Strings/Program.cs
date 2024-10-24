@@ -90,16 +90,16 @@ namespace Strings
         // Втрой вариант 
         private static void StringToBilderNew(string[] strings)
         {
-            foreach( string i in strings)
-            {
-                //Console.Write(i);
-                StringBuilder sb = new StringBuilder();
-                sb.Append(i);
-                sb.Append(" ");
-                Console.Write(sb.ToString());                
-            }
-            Console.WriteLine();
+            StringBuilder sb = new StringBuilder();
             
+            foreach ( string i in strings)
+            {                             
+                sb.Append(i);
+                sb.Append(" ");                               
+            }
+            Console.Write(sb.ToString());
+            Console.WriteLine();
+
         }
         // Задание 6
         public static void ReplaceWords(string inputString, string wordToReplace, string replacementWord)
@@ -107,6 +107,7 @@ namespace Strings
             string text = inputString;
             text = text.Replace(wordToReplace, replacementWord);
             Console.WriteLine(text);
+            
 
         }
 
@@ -132,9 +133,10 @@ namespace Strings
             Console.WriteLine(new String('*', 15));
             string[] arr = { "Название:", "Руководство", "по C#" };
             StringToBilderNew(arr);
-
+            
             Console.WriteLine(new String('*', 15));
-            ReplaceWords("Hello world", "world", "universe");
+            ReplaceWords("Hello world", "world", "universe");         
+
         }
     }
 }
