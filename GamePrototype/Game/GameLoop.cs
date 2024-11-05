@@ -2,6 +2,7 @@
 using GamePrototype.Dungeon;
 using GamePrototype.Units;
 using GamePrototype.Utils;
+using System.Timers;
 
 namespace GamePrototype.Game
 {
@@ -23,7 +24,23 @@ namespace GamePrototype.Game
         private void Initialize()
         {
             Console.WriteLine("Welcome, player!");
-            _dungeon = DungeonBuilder.BuildDungeon();
+            Console.WriteLine("Choose level: enter 1, 2 or 3");
+            if (Console.ReadLine() == "1")
+            {
+                var dungeonBuilderEasy = new DungeonBuilderEasy();
+                _dungeon = dungeonBuilderEasy.BuildDungeon();
+            }
+            else if (Console.ReadLine() == "2")
+            {
+                var dungeonBuilderMedium = new DungeonBuilderMedium();
+                _dungeon = dungeonBuilderMedium.BuildDungeon();
+            }
+            else if (Console.ReadLine() == "3")
+            {
+                var dungeonBuilderHard = new DungeonBuilderHard();
+                _dungeon = dungeonBuilderHard.BuildDungeon();
+            }
+            //_dungeon = DungeonBuilder.BuildDungeon();
             Console.WriteLine("Enter your name");
             _player = UnitFactoryDemo.CreatePlayer(Console.ReadLine());
             Console.WriteLine($"Hello {_player.Name}");

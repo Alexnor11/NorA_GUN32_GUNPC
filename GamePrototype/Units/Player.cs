@@ -39,7 +39,10 @@ namespace GamePrototype.Units
         {
             if (item is EquipItem equipItem && _equipment.TryAdd(equipItem.Slot, equipItem)) 
             {
-                // Item was equipped
+                if (_equipment.ContainsKey(equipItem.Slot))
+                {
+                    _equipment[equipItem.Slot] = equipItem;
+                }
                 return;
             }
             base.AddItemToInventory(item);
@@ -47,17 +50,27 @@ namespace GamePrototype.Units
 
         private void UseEconomicItem(EconomicItem economicItem)
         {
-            if (economicItem is HealthPotion healthPotion) 
+            if (economicItem is HealthPotion healthPotion)
             {
                 Health += healthPotion.HealthRestore;
+            }
+            else if (economicItem is Grindstone grindstone) //task 1
+            {
+                if (_equipment.TryGetValue(EquipSlot.Weapon, out var item) && item is Weapon weapon)
+                {
+                    weapon.Repair(5);
+                }
             }
         }
 
         protected override uint CalculateAppliedDamage(uint damage)
         {
-            if (_equipment.TryGetValue(EquipSlot.Armour, out var item) && item is Armour armour) 
+            if (_equipment.TryGetValue(EquipSlot.Armour, out var item) && item is Armour armour)
             {
                 damage -= (uint)(damage * (armour.Defence / 100f));
+
+                armour.ReduceDurability(1); // task 1
+
             }
             return damage;
         }
